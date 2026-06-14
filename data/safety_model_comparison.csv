@@ -1,0 +1,5 @@
+model,accuracy,precision_unsafe,recall_unsafe,f1_unsafe,roc_auc,latency_ms_per_query
+LogisticRegression,1.0,1.0,1.0,1.0,1.0,0.286
+LinearSVM,1.0,1.0,1.0,1.0,1.0,0.6
+MLP,0.9167,0.9167,1.0,0.9565,1.0,0.159
+XGBoost,0.6667,1.0,0.6364,0.7778,1.0,0.295
