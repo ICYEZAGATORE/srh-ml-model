@@ -1,0 +1,20 @@
+{
+  "topic_to_int": {
+    "contraception": 0,
+    "sti_hiv": 1,
+    "pregnancy": 2,
+    "puberty": 3,
+    "gbv_consent": 4,
+    "disability_srh": 5,
+    "general_srh": 6
+  },
+  "int_to_topic": {
+    "0": "contraception",
+    "1": "sti_hiv",
+    "2": "pregnancy",
+    "3": "puberty",
+    "4": "gbv_consent",
+    "5": "disability_srh",
+    "6": "general_srh"
+  }
+}
