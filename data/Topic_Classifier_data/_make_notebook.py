@@ -214,7 +214,18 @@ def make_pipeline(classifier):
 
 print('TF-IDF configured (ngram 1-2, max 30k features, fit on train only).')"""
 
-MODELS = """lr_pipeline = make_pipeline(
+MODELS = """import subprocess
+def _xgb_device():
+    # Use the Colab Pro GPU when present (device='cuda'); fall back to CPU locally.
+    try:
+        subprocess.run(['nvidia-smi'], capture_output=True, check=True)
+        return 'cuda'
+    except Exception:
+        return 'cpu'
+XGB_DEVICE = _xgb_device()
+print(f'XGBoost device: {XGB_DEVICE}')
+
+lr_pipeline = make_pipeline(
     LogisticRegression(C=1.0, max_iter=2000, solver='lbfgs',
                        multi_class='multinomial', class_weight='balanced',
                        random_state=RANDOM_SEED))
@@ -226,7 +237,7 @@ xgb_pipeline = make_pipeline(
     XGBClassifier(objective='multi:softprob', num_class=7, n_estimators=300,
                   max_depth=6, learning_rate=0.1, subsample=0.8,
                   colsample_bytree=0.8, eval_metric='mlogloss', tree_method='hist',
-                  random_state=RANDOM_SEED, n_jobs=-1))
+                  device=XGB_DEVICE, random_state=RANDOM_SEED, n_jobs=-1))
 MODELS = {'Logistic Regression': lr_pipeline, 'Linear SVM': svm_pipeline,
           'XGBoost': xgb_pipeline}
 print('Models defined:'); [print(f'  - {n}') for n in MODELS]"""
