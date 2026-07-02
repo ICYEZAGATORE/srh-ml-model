@@ -1,0 +1,10 @@
+{
+  "language_to_int": {
+    "english": 0,
+    "kinyarwanda": 1
+  },
+  "int_to_language": {
+    "0": "english",
+    "1": "kinyarwanda"
+  }
+}
